@@ -19,9 +19,15 @@ const Rating = ({
   className = "",
   messages = [],
   defaultRating = 0,
+  onSetRating,
 }) => {
   const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
+
+  function handleRating(rating) {
+    setRating(rating);
+    onSetRating(rating);
+  }
 
   Rating.propTypes = {
     maxRating: PropTypes.number,
@@ -30,11 +36,8 @@ const Rating = ({
     size: PropTypes.number,
     messages: PropTypes.array,
     className: PropTypes.string,
+    onSetRating: PropTypes.func,
   };
-
-  function handleRating(rating) {
-    setRating(rating);
-  }
 
   const textStyle = {
     lineHeight: "1",
